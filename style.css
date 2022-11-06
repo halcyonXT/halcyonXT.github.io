@@ -292,4 +292,11 @@ body {
     left: 17vw;
 }
 
+#overlay {
+    position: absolute;
+    z-index: 16;
+    height: 96vh;
+    width:99%;
+    pointer-events: none;
+}
 

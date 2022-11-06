@@ -22,6 +22,17 @@ let sensitivity = 10;
 
 let pastFlag = false;
 
+const overlay = () => {
+    let margin = 0;
+    setInterval(() => {
+        margin++;
+        document.getElementById("overlay").style.marginTop = `-${margin}px`
+        if (margin == 4) {
+            margin = 0;
+        }
+    }, 70)
+}
+
 const sfxChange = () => {
     audioFlag = !audioFlag
     switch(audioFlag) {
@@ -291,3 +302,5 @@ document.getElementById("sensRange").addEventListener("change", function(){
     let temporary = 6 - document.getElementById("sensRange").value;
     sensitivity = temporary * 5;
 })
+
+overlay();
