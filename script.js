@@ -145,8 +145,12 @@ const gameStart = () => {
     ballTimer = setInterval(() => {
         if (ballXpos <= 1) {
             if (ballYpos + 8 >= p1pos-8 && ballYpos + 8 <= p1pos+18) {
-                ballX = 0.5 * multiplier
-                multiplier += 0.05
+                let Xrand = 0;
+                while (Xrand < 0.25) {
+                    Xrand = Math.random() * 0.8
+                }
+                ballX = Xrand * multiplier
+                multiplier += 0.08
                 if (audioFlag) {
                     document.getElementById("paddleHit").play()
                 }
@@ -157,8 +161,12 @@ const gameStart = () => {
         }
         if (ballXpos >= 97) {
             if (ballYpos + 8 >= p2pos-8 && ballYpos + 8 <= p2pos+18) {
-                ballX = -0.5 * multiplier
-                multiplier += 0.05
+                let Xrand = 0;
+                while (Xrand > -0.25) {
+                    Xrand = Math.random() * -0.8
+                }
+                ballX = Xrand * multiplier
+                multiplier += 0.08
                 if (audioFlag) {
                     document.getElementById("paddleHit").play()
                 }
