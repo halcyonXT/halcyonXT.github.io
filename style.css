@@ -130,16 +130,18 @@ body {
     z-index: 6;
     display:none;
     user-select: none;
+    font-size:2.5vw;
 }
 
 #subtext {
     margin-top: 46vh;
-    margin-left:32vw;
+    margin-left:32.5vw;
     color:white;
     position:absolute;
     z-index: 6;
     display:none;
     user-select: none;
+    font-size:1.4vw;
 }
 
 .menu {
@@ -259,6 +261,8 @@ body {
     height: 96vh;
     width:99%;
     background-color: rgb(0,0,0,0.8);
+    justify-content: center;
+    text-align: center;
 }
 
 
@@ -281,6 +285,13 @@ body {
     background-color: rgb(0,0,0,0);
     z-index: 12;
     left: 34vw;
+    width: 30vw;
+    height: 95vh;
+    background-image: url(resources/menu.png);
+    /*background-image: url(resources/menu.png);*/
+    background-size: contain;
+    background-repeat: no-repeat;
+    overflow:hidden;
 }
 
 #optionsCard #menuImg {
@@ -292,6 +303,7 @@ body {
 }
 
 .optionsInner {
+    font-size: 1.35vw;
     position:absolute;
     z-index:13;
 }
@@ -300,10 +312,11 @@ body {
     color:white;
     margin-top: -70vh;
     user-select: none;
+    font-size:2vw;
 }
 
 
-
+/*<img id="menuImg" src="resources/menu.png">*/
 /* SLIDER */
 
 .slider {
@@ -313,7 +326,7 @@ body {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 80%; /* Full-width */
-    height: 25px; /* Specified height */
+    height: 4vh; /* Specified height */
     background: #9e9e9e; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -330,16 +343,18 @@ body {
   .slider::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 35px; /* Set a specific slider handle width */
-    height: 35px; /* Slider handle height */
+    width: 3vw; /* Set a specific slider handle width */
+    height: 6vh; /* Slider handle height */
     background: url('resources/sliderhandle.png');
+    background-size: contain;
     cursor: pointer; /* Cursor on hover */
   }
   
   .slider::-moz-range-thumb {
-    width: 35px; /* Set a specific slider handle width */
-    height: 35px; /* Slider handle height */
+    width: 1vw; /* Set a specific slider handle width */
+    height: 2vh; /* Slider handle height */
     background: url('resources/sliderhandle.png');
+    background-size: contain;
     cursor: pointer; /* Cursor on hover */
   }
 
@@ -375,6 +390,7 @@ body {
     user-select: none;
     color:white;
     margin-top:90vh;
+    font-size:1vw;
 }
 
 #pauseframe {
@@ -412,11 +428,11 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 0.6;
-    width: 35px;
-    height: 35px;
+    width: 2.5vw;
+    height: 2.5vw;
     border: none;
     margin-top: 4vh;
-    margin-left: 40.5vh;
+    margin-left: 9vh;
     user-select: none;
 }
 
@@ -444,22 +460,23 @@ body {
     display: none;
     position: absolute;
     background-image: url(resources/dropdownInfo.png);
-    background-size: auto;
+    background-size: contain;
     background-repeat: no-repeat;
     -webkit-user-drag: none;
     user-select: none;
     background-color: rgb(0,0,0,0);
-    width: 269px;
-    height: 70px;
+    width: 20vw;
+    height: 16vh;
     z-index: 18;
-    margin-top: -9vh;
+    margin-top: -6vh;
 }
 
 #dropdown-p {
     color:white;
     text-justify: justified;
     font-size: 1vw;
-    margin-left:3vh;
+    margin-left:0vh;
+    margin-top: 2.7vh;
 }
 
 .dragOpt {
