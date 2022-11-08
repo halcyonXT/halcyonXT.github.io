@@ -1,3 +1,11 @@
+/********************************************************************* */
+/*                                                                     */
+/*                            Copyright ©                              */
+/*                             11/7/2022                               */
+/*                    Holder: Github - halcyonXT                       */
+/*                 Contact: halcyonXT1987@gmail.com                    */
+/*                                                                     */
+/***********************************************************************/
 let p1pos = 40
 let p2pos = 40
 let timer;
@@ -22,6 +30,8 @@ let sensitivity = 10;
 
 let pastFlag = false;
 
+let isDragOn = true;
+
 const overlay = () => {
     let margin = 0;
     setInterval(() => {
@@ -37,10 +47,10 @@ const sfxChange = () => {
     audioFlag = !audioFlag
     switch(audioFlag) {
         case true:
-            document.getElementById("sfxBtn").innerText = `SFX ON`
+            document.getElementById("sfxBtn").innerText = `SFX - ON`
         break;
         case false:
-            document.getElementById("sfxBtn").innerText = `SFX OFF`
+            document.getElementById("sfxBtn").innerText = `SFX - OFF`
             document.getElementById("theme").muted = "true"
         break;
     }
@@ -93,6 +103,7 @@ const rstBtn = () => {
 }
 
 const gameOver = (playerWon) => {
+    initializeDrag(0);
     if (playerWon != 3) {
         if (audioFlag) {
             document.getElementById("winsound").play()
@@ -133,7 +144,16 @@ const gameOver = (playerWon) => {
 }
 
 const gameStart = () => {
-    let temp=0;
+    let dragCounter = 0;
+    let dragOneY = 36
+    let dragOneX = 48 
+    let dragTwoY = 36
+    let dragTwoX = 48 
+    let dragThreeY = 36
+    let dragThreeX = 48 
+    let dragFourY = 36
+    let dragFourX = 48
+    initializeDrag(1);
     if (audioFlag) {
         document.getElementById("start").play()
     }
@@ -143,14 +163,15 @@ const gameStart = () => {
     let ballY = [1,-1][Math.floor(Math.random()*2)]
     flag = false;
     ballTimer = setInterval(() => {
+        dragCounter++;
         if (ballXpos <= 1) {
-            if (ballYpos + 8 >= p1pos-8 && ballYpos + 8 <= p1pos+18) {
+            if (ballYpos + 8 > p1pos-8 && ballYpos + 8 < p1pos+18) {
                 let Xrand = 0;
                 while (Xrand < 0.25) {
                     Xrand = Math.random() * 0.8
                 }
                 ballX = Xrand * multiplier
-                multiplier += 0.08
+                multiplier += 0.06
                 if (audioFlag) {
                     document.getElementById("paddleHit").play()
                 }
@@ -160,13 +181,13 @@ const gameStart = () => {
             }
         }
         if (ballXpos >= 97) {
-            if (ballYpos + 8 >= p2pos-8 && ballYpos + 8 <= p2pos+18) {
+            if (ballYpos + 8 > p2pos-8 && ballYpos + 8 < p2pos+18) {
                 let Xrand = 0;
                 while (Xrand > -0.25) {
                     Xrand = Math.random() * -0.8
                 }
                 ballX = Xrand * multiplier
-                multiplier += 0.08
+                multiplier += 0.06
                 if (audioFlag) {
                     document.getElementById("paddleHit").play()
                 }
@@ -193,12 +214,50 @@ const gameStart = () => {
         if (!optFlag) {
             ballXpos += ballX
             ballYpos += ballY
+            if (isDragOn) {
+                if (dragCounter % 2 == 0) {
+                    updateDrag(dragOneX, dragOneY, 1);
+                    dragOneX = ballXpos
+                    dragOneY = ballYpos
+                }
+                if (dragCounter % 3 == 0) {
+                    updateDrag(dragTwoX, dragTwoY, 2);
+                    dragTwoX = ballXpos
+                    dragTwoY = ballYpos
+                }
+                if (dragCounter % 4 == 0) {
+                    updateDrag(dragThreeX, dragThreeY, 3);
+                    dragThreeX = ballXpos
+                    dragThreeY = ballYpos
+                }
+                if (dragCounter % 5 == 0) {
+                    updateDrag(dragFourX, dragFourY, 4);
+                    dragFourX = ballXpos
+                    dragFourY = ballYpos
+                }
+            }
             document.getElementById("ball").style.left = `${ballXpos}vw`
             document.getElementById("ball").style.top = `${ballYpos}vh`
         }
+        dynCheck();
     }, 20)
 }
 
+const changeDrag = () => {
+    isDragOn = !isDragOn
+    switch (isDragOn) {
+        case true:
+            if (!pastFlag) {
+                initializeDrag(1)
+            }
+            document.getElementById("dragOption").innerText = `DRAG - ON`
+        break;
+        case false:
+            initializeDrag(0)
+            document.getElementById("dragOption").innerText = `DRAG - OFF`
+        break;
+    }
+}
 
 const player2MoveUp = () => {
     if (p2pos == 0) {
@@ -308,7 +367,71 @@ document.addEventListener("keyup", function(event) {
 
 document.getElementById("sensRange").addEventListener("change", function(){
     let temporary = 6 - document.getElementById("sensRange").value;
-    sensitivity = temporary * 5;
+    sensitivity = temporary * 2.5;
 })
+
+let dropFlag = false;
+const mouseoverDyn = () => {
+    dropFlag = false;
+    document.getElementById("dynText").style.opacity = `1`;
+    document.getElementById("dynamicBtn").style.opacity = `1`
+    setTimeout(() => {
+        if (!dropFlag) {
+            document.getElementById("dropdown-info").style.display = "block";
+        }
+    }, 500)
+}
+
+const initializeDrag = (state) => {
+    switch (state) {
+        case 1:
+        document.getElementById("ballDrag1").style.display = "block";
+        document.getElementById("ballDrag2").style.display = "block";
+        document.getElementById("ballDrag3").style.display = "block";
+        document.getElementById("ballDrag4").style.display = "block";
+        break;
+        case 0:
+        document.getElementById("ballDrag1").style.display = "none";
+        document.getElementById("ballDrag2").style.display = "none";
+        document.getElementById("ballDrag3").style.display = "none";
+        document.getElementById("ballDrag4").style.display = "none";
+        break;
+    }
+}
+
+const mouseoutDyn = () => {
+    document.getElementById("dynText").style.opacity = `0.8`;
+    document.getElementById("dynamicBtn").style.opacity = `0.6`
+    document.getElementById("dropdown-info").style.display = "none";
+    dropFlag = true;
+}
+
+
+let dynFlag = false;
+const enableDynamic = () => {
+    dynFlag = !dynFlag;
+    switch (dynFlag) {
+        case true:
+            document.getElementById("dynamicBtn").style.backgroundImage = "url(resources/checked.png)";
+            document.getElementById("sensRange").style.pointerEvents = "none";
+            document.getElementById("sensRange").style.opacity = 0.35;
+            dynCheck();
+        break;
+        case false:
+            document.getElementById("dynamicBtn").style.backgroundImage = "url(resources/unchecked.png)";
+            document.getElementById("sensRange").style.pointerEvents = "all";
+            document.getElementById("sensRange").style.opacity = 0.8;
+        break;
+    }
+}
+
+const dynCheck = () => {
+    sensitivity = 14 - (multiplier * 3.4);
+}
+
+const updateDrag = (xpos, ypos, dragNum) => {
+    document.getElementById(`ballDrag${dragNum}`).style.left = `${xpos}vw`
+    document.getElementById(`ballDrag${dragNum}`).style.top = `${ypos}vh`
+}
 
 overlay();

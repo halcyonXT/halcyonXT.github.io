@@ -9,6 +9,7 @@ body {
 }
 /* 95 vw 95 vh*/
 .player {
+    user-select: none;
     position: absolute;
     height: 12vh;
     width: 1vw;
@@ -20,19 +21,22 @@ body {
 }
 
 #player1 {
-    z-index: 1;
+    user-select: none;
+    z-index: 5;
 }
 
 #player2 {
+    user-select: none;
     margin-left: 98vw;
-    z-index: 2;
+    z-index: 5;
 }
 
 /* at 1vw collides with left paddle, 96vw with right paddle*/
 /* top is at -8vh, bot at 85vh*/
 #ball {
+    user-select: none;
     position: absolute;
-    z-index: 3;
+    z-index: 6;
     left: 48vw;
     background-color: white;
     margin-top: 9vh;
@@ -41,7 +45,61 @@ body {
     width: 2vw;
 }
 
+#ballDrag1 {
+    display: none;
+    user-select: none;
+    position: absolute;
+    z-index: 5;
+    left: 48vw;
+    background-color: rgb(212, 198, 0);
+    box-shadow: 0px 0px 10px rgb(212, 198, 0);
+    margin-top: 9vh;
+    top: 36vh;
+    height: 3vh;
+    width: 1.5vw;
+}
+#ballDrag2 {
+    display: none;
+    user-select: none;
+    position: absolute;
+    z-index: 4;
+    left: 48vw;
+    background-color: rgb(199, 162, 0);
+    box-shadow: 0px 0px 10px rgb(199, 162, 0);
+    margin-top: 9vh;
+    top: 36vh;
+    height: 2.5vh;
+    width: 1.25vw;
+}
+#ballDrag3 {
+    display: none;
+    user-select: none;
+    position: absolute;
+    z-index: 3;
+    left: 48vw;
+    background-color: rgb(219, 132, 0);
+    box-shadow: 0px 0px 10px rgb(219, 132, 0);
+    margin-top: 9vh;
+    top: 36vh;
+    height: 2vh;
+    width: 1vw;
+}
+#ballDrag4 {
+    display: none;
+    user-select: none;
+    position: absolute;
+    z-index: 2;
+    left: 48vw;
+    background-color: rgb(255, 0, 0);
+    box-shadow: 0px 0px 10px rgb(255, 0, 0);
+    margin-top: 9vh;
+    top: 36vh;
+    height: 1.5vh;
+    width: 0.75vw;
+}
+
 #scoreframe1 {
+    user-select: none;
     background-color:rgb(255, 255, 255, 0);
     position:absolute;
     z-index: 4;
@@ -53,6 +111,7 @@ body {
 }
 
 #scoreframe2 {
+    user-select: none;
     background-color:rgb(255, 255, 255, 0);
     margin-left: 51vw;
     position:absolute;
@@ -70,6 +129,7 @@ body {
     position:absolute;
     z-index: 6;
     display:none;
+    user-select: none;
 }
 
 #subtext {
@@ -79,6 +139,7 @@ body {
     position:absolute;
     z-index: 6;
     display:none;
+    user-select: none;
 }
 
 .menu {
@@ -90,11 +151,13 @@ body {
 }
 
 .logo {
+    pointer-events: none;
     width:34vw;
     top: 20vh;
     left: 32vw;
     position:absolute;
     z-index:7;
+    user-select: none;
 }
 
 #startBtn {
@@ -181,6 +244,7 @@ body {
 }
 
 .cnt {
+    -webkit-user-drag: none;
     width: 6vw;
 }
 
@@ -219,10 +283,12 @@ body {
     left: 34vw;
 }
 
-#optionsCard img {
+#optionsCard #menuImg {
     flex-shrink: 0;
     min-width: 5%;
-    min-height: 5%
+    min-height: 5%;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .optionsInner {
@@ -232,7 +298,8 @@ body {
 
 .headr {
     color:white;
-    margin-top: -60vh;
+    margin-top: -70vh;
+    user-select: none;
 }
 
 
@@ -240,7 +307,8 @@ body {
 /* SLIDER */
 
 .slider {
-    margin-top: -10vh;
+    -webkit-user-drag: none;
+    margin-top: -40vh;
     margin-left:2%;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
@@ -280,11 +348,13 @@ body {
 }
 
 .sens {
-    margin-top: -20vh;
+    margin-top: -50vh;
+    user-select: none;
 }
 
 .sfx {
-    margin-top: 25vh;
+    margin-top: 0vh;
+    user-select: none;
 }
 .sfx:hover {
     color:white;
@@ -294,6 +364,7 @@ body {
 
 .rst {
     margin-top: 54vh;
+    user-select: none;
 }
 .rst:hover {
     color:white;
@@ -301,6 +372,7 @@ body {
 }
 
 .notice {
+    user-select: none;
     color:white;
     margin-top:90vh;
 }
@@ -318,5 +390,85 @@ body {
     height: 98vh;
     width:99%;
     pointer-events: none;
+    user-select: none;
+}
+
+#menuImg {
+    -webkit-user-drag: none;
+    pointer-events: none;
+    user-select: none;
+}
+
+.dynamic {
+    margin-top: -40vh;
+    display: inline;
+    user-select: none;
+}
+
+#dynamicBtn {
+    position:absolute;
+    z-index:17;
+    background-image: url("resources/unchecked.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    width: 35px;
+    height: 35px;
+    border: none;
+    margin-top: 4vh;
+    margin-left: 40.5vh;
+    user-select: none;
+}
+
+#dynamicBtn:hover {
+    cursor: pointer;
+}
+
+#dynText {
+    color:white;
+    opacity:0.8;
+    left: 8.5vw;
+    margin-top:5vh;
+    user-select: none;
+}
+
+#dynText:hover {
+    cursor:pointer;
+}
+
+#sensRange {
+    user-select: none;
+}
+
+#dropdown-info {
+    display: none;
+    position: absolute;
+    background-image: url(resources/dropdownInfo.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    -webkit-user-drag: none;
+    user-select: none;
+    background-color: rgb(0,0,0,0);
+    width: 269px;
+    height: 70px;
+    z-index: 18;
+    margin-top: -9vh;
+}
+
+#dropdown-p {
+    color:white;
+    text-justify: justified;
+    font-size: 1vw;
+    margin-left:3vh;
+}
+
+.dragOpt {
+    user-select: none;
+    margin-top: 25vh;
+}
+
+.dragOpt:hover {
+    color:white;
+    cursor: pointer;
 }
 
