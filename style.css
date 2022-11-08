@@ -172,21 +172,21 @@ body {
     left: 39vw;
     border:none;
     background-image: url(resources/startbtn.png);
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-color: rgb(0,0,0,0);
     opacity: 0.8;
 }
 
 #startBtn:hover {
-    transition-duration: 0.15s;
+    transition-duration: 0.1s;
     opacity: 1;
 }
 
 #startBtn:active {
     background-image: url(resources/startbtnpressed.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 /*#startBtn:hover {
@@ -208,19 +208,19 @@ body {
     border:none;
     background-color: rgb(212, 212, 212, 0);
     background-image: url(resources/optbtn.png);
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     opacity: 0.8;
 }
 
 #optBtn:hover {
-    transition-duration: 0.15s;
+    transition-duration: 0.1s;
     opacity: 1;
 }
 
 #optBtn:active {
     background-image: url(resources/optbtnpressed.png);
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
@@ -310,7 +310,7 @@ body {
 
 .headr {
     color:white;
-    margin-top: -70vh;
+    margin-top: -60vh;
     user-select: none;
     font-size:2vw;
 }
@@ -321,7 +321,7 @@ body {
 
 .slider {
     -webkit-user-drag: none;
-    margin-top: -40vh;
+    margin-top: -30vh;
     margin-left:2%;
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
@@ -347,13 +347,15 @@ body {
     height: 6vh; /* Slider handle height */
     background: url('resources/sliderhandle.png');
     background-size: contain;
+    background-repeat: no-repeat;
     cursor: pointer; /* Cursor on hover */
   }
   
   .slider::-moz-range-thumb {
-    width: 1vw; /* Set a specific slider handle width */
-    height: 2vh; /* Slider handle height */
+    width: 3vw; /* Set a specific slider handle width */
+    height: 6vh; /* Slider handle height */
     background: url('resources/sliderhandle.png');
+    background-repeat: no-repeat;
     background-size: contain;
     cursor: pointer; /* Cursor on hover */
   }
@@ -363,12 +365,12 @@ body {
 }
 
 .sens {
-    margin-top: -50vh;
+    margin-top: -40vh;
     user-select: none;
 }
 
 .sfx {
-    margin-top: 0vh;
+    margin-top: 20vh;
     user-select: none;
 }
 .sfx:hover {
@@ -389,7 +391,7 @@ body {
 .notice {
     user-select: none;
     color:white;
-    margin-top:90vh;
+    margin-top:-83vh;
     font-size:1vw;
 }
 
@@ -416,7 +418,7 @@ body {
 }
 
 .dynamic {
-    margin-top: -40vh;
+    margin-top: -30vh;
     display: inline;
     user-select: none;
 }
@@ -481,7 +483,7 @@ body {
 
 .dragOpt {
     user-select: none;
-    margin-top: 25vh;
+    margin-top: 35vh;
 }
 
 .dragOpt:hover {
