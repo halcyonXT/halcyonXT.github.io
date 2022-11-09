@@ -31,6 +31,7 @@ let sensitivity = 10;
 let pastFlag = false;
 
 let isDragOn = true;
+let dynFlag = false;
 
 const overlay = () => {
     let margin = 0;
@@ -153,7 +154,9 @@ const gameStart = () => {
     let dragThreeX = 48 
     let dragFourY = 36
     let dragFourX = 48
-    initializeDrag(1);
+    if (isDragOn) {
+        initializeDrag(1);
+    }
     if (audioFlag) {
         document.getElementById("start").play()
     }
@@ -239,7 +242,9 @@ const gameStart = () => {
             document.getElementById("ball").style.left = `${ballXpos}vw`
             document.getElementById("ball").style.top = `${ballYpos}vh`
         }
-        dynCheck();
+        if (dynFlag) {
+            dynCheck();
+        }
     }, 20)
 }
 
@@ -366,7 +371,7 @@ document.addEventListener("keyup", function(event) {
 })
 
 document.getElementById("sensRange").addEventListener("change", function(){
-    let temporary = 6 - document.getElementById("sensRange").value;
+    let temporary = 9 - document.getElementById("sensRange").value;
     sensitivity = temporary * 2.5;
 })
 
@@ -407,7 +412,6 @@ const mouseoutDyn = () => {
 }
 
 
-let dynFlag = false;
 const enableDynamic = () => {
     dynFlag = !dynFlag;
     switch (dynFlag) {
@@ -421,6 +425,7 @@ const enableDynamic = () => {
             document.getElementById("dynamicBtn").style.backgroundImage = "url(resources/unchecked.png)";
             document.getElementById("sensRange").style.pointerEvents = "all";
             document.getElementById("sensRange").style.opacity = 0.8;
+            sensitivity = Number(document.getElementById("sensRange").value)
         break;
     }
 }
