@@ -34,12 +34,12 @@ let isDragOn = true;
 let dynFlag = false;
 
 const overlay = () => {
-    let margin = 0;
+    let margin = -12;
     setInterval(() => {
         margin++;
-        document.getElementById("overlay").style.marginTop = `-${margin}px`
-        if (margin == 4) {
-            margin = 0;
+        document.getElementById("overlay").style.marginTop = `${margin}px`
+        if (margin == -4) {
+            margin = -12;
         }
     }, 70)
 }
@@ -72,8 +72,23 @@ const playTheme = () => {
     document.getElementById("startBtn").style.display = "block";
     document.getElementById("optBtn").style.display = "block";
 }
-
+//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 const gameInit = async () => {
+    document.getElementById("backgroundEffect").style.opacity = "0.75";
+    document.getElementById("ball").style.zIndex = "69";
+    document.getElementById("ballDrag1").style.zIndex = "68";
+    document.getElementById("ballDrag2").style.zIndex = "67";
+    document.getElementById("ballDrag3").style.zIndex = "66";
+    document.getElementById("ballDrag4").style.zIndex = "65";
+    document.getElementById("player1").style.zIndex = "64";
+    document.getElementById("player2").style.zIndex = "64";
+    document.getElementById("victor").style.zIndex = "64";
+    document.getElementById("subtext").style.zIndex = "64";
+    document.getElementById("outerframe").style.zIndex = "74";
+    document.getElementById("optionsCard").style.zIndex = "75";
+    [1, 2].forEach(number => {
+        document.getElementById(`scoreframe${number}`).style.zIndex = "63";
+    })
     pastFlag = true;
     document.getElementById("theme").muted = "true"
     if (audioFlag) {
@@ -144,16 +159,16 @@ const gameOver = (playerWon) => {
     })
 }
 
+let dragOneY = 36
+let dragOneX = 48 
+let dragTwoY = 36
+let dragTwoX = 48 
+let dragThreeY = 36
+let dragThreeX = 48 
+let dragFourY = 36
+let dragFourX = 48
 const gameStart = () => {
     let dragCounter = 0;
-    let dragOneY = 36
-    let dragOneX = 48 
-    let dragTwoY = 36
-    let dragTwoX = 48 
-    let dragThreeY = 36
-    let dragThreeX = 48 
-    let dragFourY = 36
-    let dragFourX = 48
     if (isDragOn) {
         initializeDrag(1);
     }
@@ -400,6 +415,14 @@ const initializeDrag = (state) => {
         document.getElementById("ballDrag2").style.display = "none";
         document.getElementById("ballDrag3").style.display = "none";
         document.getElementById("ballDrag4").style.display = "none";
+        dragOneY = -999;
+        dragOneX = -999;
+        dragTwoY = -999;
+        dragTwoX = -999;
+        dragThreeY = -999;
+        dragThreeX = -999;
+        dragFourY = -999;
+        dragFourX = -999;
         break;
     }
 }
@@ -437,6 +460,199 @@ const dynCheck = () => {
 const updateDrag = (xpos, ypos, dragNum) => {
     document.getElementById(`ballDrag${dragNum}`).style.left = `${xpos}vw`
     document.getElementById(`ballDrag${dragNum}`).style.top = `${ypos}vh`
+}
+
+let theme = 1;
+const changeTheme = () => {
+    if (theme == 5) {
+        theme = 1;
+    } else theme++
+    switch (theme) {
+        case 1: // CLASSIC
+        document.getElementById("themesButton").innerText = `CLASSIC`;
+
+        document.getElementById("backgroundEffect").src = "resources/newvid.gif";
+        document.getElementById("backgroundEffect").style.opacity = "0.75";
+        document.getElementById("ball").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("ball").style.outline = `0px solid black`
+
+        document.getElementById("ballDrag1").style.backgroundColor = `rgb(0, 205, 212)`
+        document.getElementById("ballDrag1").style.boxShadow = `0px 0px 10px rgb(0, 205, 212)`
+        document.getElementById("ballDrag2").style.backgroundColor = `rgb(0, 169, 199)`
+        document.getElementById("ballDrag2").style.boxShadow = `0px 0px 10px rgb(0, 169, 199)`
+        document.getElementById("ballDrag3").style.backgroundColor = `rgb(0, 120, 219)`
+        document.getElementById("ballDrag3").style.boxShadow = `0px 0px 10px rgb(0, 120, 219)`
+        document.getElementById("ballDrag4").style.backgroundColor = `rgb(0, 81, 255)`
+        document.getElementById("ballDrag4").style.boxShadow = `0px 0px 10px rgb(0, 81, 255)`
+
+        document.getElementById("victor").style.color = `rgb(255, 255, 255)`
+        document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
+        document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("player1").style.outline = `0px solid green`
+        document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("player2").style.outline = `0px solid green`
+
+        document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
+            document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
+
+        document.getElementById("p1score").style.color = "rgb(255, 255, 255)";
+        document.getElementById("p2score").style.color = "rgb(255, 255, 255)";
+
+        document.getElementById("outerframe").style.zIndex = "74";
+        document.getElementById("optionsCard").style.zIndex = "75";
+
+        document.getElementById("overlay").style.opacity = `0.25`;
+        document.getElementById("tvover").style.opacity = "0.5";
+
+        break;
+
+
+        case 2: // 1337
+        document.getElementById("themesButton").innerText = `1337`;
+
+        document.getElementById("backgroundEffect").src = `resources/1337.png`;
+        document.getElementById("backgroundEffect").style.opacity = "1";
+        document.getElementById("ball").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("ball").style.outline = `1vw solid black`
+
+        document.getElementById("ballDrag1").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("ballDrag1").style.boxShadow = `0px 0px 0px rgb(0, 255, 0)`
+        document.getElementById("ballDrag2").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("ballDrag2").style.boxShadow = `0px 0px 0px rgb(0, 255, 0)`
+        document.getElementById("ballDrag3").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("ballDrag3").style.boxShadow = `0px 0px 0px rgb(0, 255, 0)`
+        document.getElementById("ballDrag4").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("ballDrag4").style.boxShadow = `0px 0px 0px rgb(0, 255, 0)`
+
+        document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 1)`
+        document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 1)`
+
+        document.getElementById("victor").style.color = `rgb(0, 255, 0)`
+        document.getElementById("subtext").style.color = `rgb(0, 255, 0)`
+        document.getElementById("player1").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("player1").style.outline = `1vw solid black`
+        document.getElementById("player2").style.backgroundColor = `rgb(0, 255, 0)`
+        document.getElementById("player2").style.outline = `1vw solid black`
+        document.getElementById("outerframe").style.zIndex = "74";
+        document.getElementById("optionsCard").style.zIndex = "75";
+
+        document.getElementById("p1score").style.color = "rgb(0, 255, 0)";
+        document.getElementById("p2score").style.color = "rgb(0, 255, 0)";
+
+
+        document.getElementById("overlay").style.opacity = `0.5`;
+        document.getElementById("tvover").style.opacity = "0.5";
+
+        break;
+
+        case 3:
+            document.getElementById("themesButton").innerText = `MIDNIGHT`;
+
+            document.getElementById("backgroundEffect").src = "resources/midnight.gif";
+            document.getElementById("backgroundEffect").style.opacity = "0.1";
+            document.getElementById("ball").style.backgroundColor = `rgb(255, 255, 255)`
+            document.getElementById("ball").style.outline = `0px solid black`
+    
+            document.getElementById("ballDrag1").style.backgroundColor = `rgb(143, 83, 226)`
+            document.getElementById("ballDrag1").style.boxShadow = `0px 0px 10px rgb(143, 83, 226)`
+            document.getElementById("ballDrag2").style.backgroundColor = `rgb(124, 72, 196)`
+            document.getElementById("ballDrag2").style.boxShadow = `0px 0px 10px rgb(124, 72, 196)`
+            document.getElementById("ballDrag3").style.backgroundColor = `rgb(87, 52, 137)`
+            document.getElementById("ballDrag3").style.boxShadow = `0px 0px 10px rgb(87, 52, 137)`
+            document.getElementById("ballDrag4").style.backgroundColor = `rgb(66, 38, 104)`
+            document.getElementById("ballDrag4").style.boxShadow = `0px 0px 10px rgb(66, 38, 104)`
+    
+            document.getElementById("victor").style.color = `rgb(255, 255, 255)`
+            document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
+            document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
+            document.getElementById("player1").style.outline = `0px solid green`
+            document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
+            document.getElementById("player2").style.outline = `0px solid green`
+
+            document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
+            document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
+    
+            document.getElementById("p1score").style.color = "rgb(255, 255, 255)";
+            document.getElementById("p2score").style.color = "rgb(255, 255, 255)";
+    
+            document.getElementById("outerframe").style.zIndex = "74";
+            document.getElementById("optionsCard").style.zIndex = "75";
+    
+            document.getElementById("overlay").style.opacity = `0.25`;
+            document.getElementById("tvover").style.opacity = "0.5";
+    
+            break;
+        case 4:
+            document.getElementById("themesButton").innerText = `KEEP OUT`;
+            document.getElementById("backgroundEffect").src = `resources/keepout.png`;
+        document.getElementById("backgroundEffect").style.opacity = "0.6";
+        document.getElementById("ball").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("ball").style.outline = `0.5vw solid rgb(4, 3, 0)`
+
+        document.getElementById("ballDrag1").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("ballDrag1").style.boxShadow = `0px 0px 0px rgb(254, 186, 0)`
+        document.getElementById("ballDrag2").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("ballDrag2").style.boxShadow = `0px 0px 0px rgb(254, 186, 0)`
+        document.getElementById("ballDrag3").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("ballDrag3").style.boxShadow = `0px 0px 0px rgb(254, 186, 0)`
+        document.getElementById("ballDrag4").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("ballDrag4").style.boxShadow = `0px 0px 0px rgb(254, 186, 0)`
+
+        document.getElementById("victor").style.color = `rgb(254, 186, 0)`
+        document.getElementById("subtext").style.color = `rgb(254, 186, 0)`
+        document.getElementById("player1").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("player1").style.outline = `0.5vw solid rgb(4, 3, 0)`
+        document.getElementById("player2").style.backgroundColor = `rgb(254, 186, 0)`
+        document.getElementById("player2").style.outline = `0.5vw solid rgb(4, 3, 0)`
+        document.getElementById("outerframe").style.zIndex = "74";
+        document.getElementById("optionsCard").style.zIndex = "75";
+
+        document.getElementById("victor").style.backgroundColor = `rgb(4, 3, 0, 1)`
+        document.getElementById("subtext").style.backgroundColor = `rgb(4, 3, 0, 1)`
+
+        document.getElementById("p1score").style.color = "rgb(254, 186, 0)";
+        document.getElementById("p2score").style.color = "rgb(254, 186, 0)";
+        
+        document.getElementById("tvover").style.opacity = "0.7";
+        document.getElementById("overlay").style.opacity = `0.25`;
+        break;
+        case 5:
+            document.getElementById("themesButton").innerText = `NONE`;
+
+        document.getElementById("backgroundEffect").src = "resources/none.png";
+        document.getElementById("backgroundEffect").style.opacity = "0.75";
+        document.getElementById("ball").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("ball").style.outline = `0px solid black`
+
+        document.getElementById("ballDrag1").style.backgroundColor = `rgb(212, 198, 0)`
+        document.getElementById("ballDrag1").style.boxShadow = `0px 0px 10px rgb(212, 198, 0)`
+        document.getElementById("ballDrag2").style.backgroundColor = `rgb(199, 162, 0)`
+        document.getElementById("ballDrag2").style.boxShadow = `0px 0px 10px rgb(199, 162, 0)`
+        document.getElementById("ballDrag3").style.backgroundColor = `rgb(219, 132, 0)`
+        document.getElementById("ballDrag3").style.boxShadow = `0px 0px 10px rgb(219, 132, 0)`
+        document.getElementById("ballDrag4").style.backgroundColor = `rgb(255, 0, 0)`
+        document.getElementById("ballDrag4").style.boxShadow = `0px 0px 10px rgb(255, 0, 0)`
+
+        document.getElementById("victor").style.color = `rgb(255, 255, 255)`
+        document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
+        document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("player1").style.outline = `0px solid green`
+        document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("player2").style.outline = `0px solid green`
+
+        document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
+            document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
+
+        document.getElementById("p1score").style.color = "rgb(255, 255, 255)";
+        document.getElementById("p2score").style.color = "rgb(255, 255, 255)";
+
+        document.getElementById("outerframe").style.zIndex = "74";
+        document.getElementById("optionsCard").style.zIndex = "75";
+
+        document.getElementById("overlay").style.opacity = `0.25`;
+        document.getElementById("tvover").style.opacity = "0.5";
+    }
+
 }
 
 overlay();

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+
 body {
     font-family: 'Press Start 2P', cursive;
     height:100%;
@@ -51,8 +52,8 @@ body {
     position: absolute;
     z-index: 5;
     left: 48vw;
-    background-color: rgb(212, 198, 0);
-    box-shadow: 0px 0px 10px rgb(212, 198, 0);
+    background-color: rgb(0, 205, 212);
+    box-shadow: 0px 0px 10px rgb(0, 205, 212);
     margin-top: 9vh;
     top: 36vh;
     height: 3vh;
@@ -64,8 +65,8 @@ body {
     position: absolute;
     z-index: 4;
     left: 48vw;
-    background-color: rgb(199, 162, 0);
-    box-shadow: 0px 0px 10px rgb(199, 162, 0);
+    background-color: rgb(0, 169, 199);
+    box-shadow: 0px 0px 10px rgb(0, 169, 199);
     margin-top: 9vh;
     top: 36vh;
     height: 2.5vh;
@@ -77,8 +78,8 @@ body {
     position: absolute;
     z-index: 3;
     left: 48vw;
-    background-color: rgb(219, 132, 0);
-    box-shadow: 0px 0px 10px rgb(219, 132, 0);
+    background-color: rgb(0, 120, 219);
+    box-shadow: 0px 0px 10px rgb(0, 120, 219);
     margin-top: 9vh;
     top: 36vh;
     height: 2vh;
@@ -90,8 +91,8 @@ body {
     position: absolute;
     z-index: 2;
     left: 48vw;
-    background-color: rgb(255, 0, 0);
-    box-shadow: 0px 0px 10px rgb(255, 0, 0);
+    background-color: rgb(0, 81, 255);
+    box-shadow: 0px 0px 10px rgb(0, 81, 255);
     margin-top: 9vh;
     top: 36vh;
     height: 1.5vh;
@@ -108,6 +109,7 @@ body {
     height:95vh;
     color:rgb(255, 255, 255, 0.7);
     font-size:2vw;
+    opacity: 0.8;
 }
 
 #scoreframe2 {
@@ -121,6 +123,7 @@ body {
     height:95vh;
     color:rgb(255, 255, 255, 0.7);
     font-size:2vw;
+    opacity: 0.6;
 }
 
 #victor {
@@ -158,14 +161,15 @@ body {
     top: 20vh;
     left: 32vw;
     position:absolute;
-    z-index:7;
+    z-index:51;
     user-select: none;
+    opacity: 1;
 }
 
 #startBtn {
     display:none;
     position: absolute;
-    z-index:8;
+    z-index:55;
     width: 20vw;
     height: 10vh;
     top: 48vh;
@@ -200,7 +204,7 @@ body {
 #optBtn {
     display:none;
     position: absolute;
-    z-index:10;
+    z-index:54;
     width: 20vw;
     height: 10vh;
     top: 62vh;
@@ -248,6 +252,7 @@ body {
 .cnt {
     -webkit-user-drag: none;
     width: 6vw;
+    opacity: 0.8;
 }
 
 ::-webkit-scrollbar {
@@ -258,11 +263,17 @@ body {
     display:none;
     z-index:11;
     position: absolute;
-    height: 96vh;
-    width:99%;
+    margin: 0;
+    padding: 0;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    z-index: 101;
+    height: 100vh;
+    width:100%;
     background-color: rgb(0,0,0,0.8);
     justify-content: center;
     text-align: center;
+    opacity: 0.9;
 }
 
 
@@ -281,21 +292,22 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    position:absolute;
+    position:fixed;
     background-color: rgb(0,0,0,0);
     z-index: 12;
-    left: 34vw;
-    width: 30vw;
-    height: 95vh;
+    margin-top: 1vh;
+    left: 32vw;
+    width: 35vw;
+    height: 97vh;
     background-image: url(resources/menu.png);
     /*background-image: url(resources/menu.png);*/
-    background-size: contain;
-    background-repeat: no-repeat;
-    overflow:hidden;
+    background-size: cover;
+    background-repeat:round;
+    overflow:visible;
+    opacity: 0.9;
 }
 
 #optionsCard #menuImg {
-    flex-shrink: 0;
     min-width: 5%;
     min-height: 5%;
     user-select: none;
@@ -307,7 +319,7 @@ body {
     position:absolute;
     z-index:13;
 }
-
+/*scoreframe*/
 .headr {
     color:white;
     margin-top: -60vh;
@@ -370,7 +382,7 @@ body {
 }
 
 .sfx {
-    margin-top: 20vh;
+    margin-top: 10vh;
     user-select: none;
 }
 .sfx:hover {
@@ -380,12 +392,23 @@ body {
 
 
 .rst {
-    margin-top: 54vh;
+    margin-top: 74vh;
     user-select: none;
 }
 .rst:hover {
     color:white;
     cursor:pointer;
+}
+
+.themesBtn {
+    margin-top: 40vh;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.themesBtn:hover {
+    cursor:pointer;
+    color: white;
 }
 
 .notice {
@@ -404,11 +427,18 @@ body {
 
 #overlay {
     position: absolute;
-    z-index: 16;
-    height: 98vh;
-    width:99%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    margin-left: -1vh;
+    margin-top: -2vh;
+    z-index: 103;
+    height: 99.7vh;
+    overflow:hidden;
+    width:100%;
     pointer-events: none;
     user-select: none;
+    opacity: 0.25;
 }
 
 #menuImg {
@@ -434,7 +464,7 @@ body {
     height: 2.5vw;
     border: none;
     margin-top: 4vh;
-    margin-left: 9vh;
+    margin-left: 12vh;
     user-select: none;
 }
 
@@ -483,11 +513,43 @@ body {
 
 .dragOpt {
     user-select: none;
-    margin-top: 35vh;
+    margin-top: 25vh;
 }
 
 .dragOpt:hover {
     color:white;
     cursor: pointer;
+}
+
+#backgroundEffect {
+    position: absolute;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    margin-left: -1vh;
+    margin-top: -1vh;
+
+    height: 100vh;
+    width: 100vw;
+    z-index: 50;
+    opacity: 0.2;
+    user-select: none;
+    -webkit-user-drag: none;
+    pointer-events: none;
+}
+
+#tvover {
+    position: absolute;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    margin-left: -1vh;
+    margin-top: -1vh;
+    z-index: 101;
+    height: 100vh;
+    width:100%;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.5;
 }
 

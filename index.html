@@ -7,7 +7,9 @@
         <title>PONG!</title>
     </head>
     <body onclick="playTheme()">
+        <div id="1337effect"></div>
         <img src="resources/scanlines.png" id="overlay">
+        <img src="resources/tvover.png" id="tvover">
         <div id="outerframe">
             <div id="optionsCard">
                 <h1 class="headr optionsInner">MENU</h1>
@@ -22,6 +24,7 @@
                     <p id="dropdown-p">Makes sensitivity relative to ball speed</p>
                 </div>
                 <h3 class="optionsInner genText dragOpt"><span id="dragOption" onclick="changeDrag()">DRAG - ON</span></h3>
+                <h3 class="optionsInner genText themesBtn">THEME - <span id="themesButton" onclick="changeTheme()">CLASSIC</span></h3>
                 <h5 class="optionsInner gentext notice">Press ESC to exit</h5>
                 <input type="range" min="1" max="8" value="5" class="optionsInner slider" id="sensRange">
             </div>
@@ -33,6 +36,7 @@
             <button id="startBtn" onclick="gameInit()"></button>
             <button id="optBtn" onclick="displayOptions()"></button>
         </div>
+        <img src="resources/newvid.gif" id="backgroundEffect">
 
 
         <div class="player vertical-center" id="player1" 
