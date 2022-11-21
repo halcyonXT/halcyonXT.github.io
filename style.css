@@ -553,3 +553,49 @@ body {
     opacity: 0.5;
 }
 
+#player1drag1 {
+    user-select: none;
+    position: absolute;
+    height: 12vh;
+    width: 1vw;
+    background-color: rgb(0, 195, 255);
+}
+#player1drag2 {
+    user-select: none;
+    position: absolute;
+    height: 12vh;
+    width: 1vw;
+    background-color: rgb(0, 81, 255);
+}
+#player1drag3 {
+    user-select: none;
+    position: absolute;
+    height: 12vh;
+    width: 1vw;
+    background-color: rgb(0, 60, 255);
+}
+#player2drag1 {
+    user-select: none;
+    position: absolute;
+    height: 12vh;
+    width: 1vw;
+    background-color: rgb(0,195,255);
+    margin-left: 98vw;
+}
+#player2drag2 {
+    user-select: none;
+    position: absolute;
+    height: 12vh;
+    width: 1vw;
+    background-color: rgb(0, 81, 255);
+    margin-left: 98vw;
+}
+#player2drag3 {
+    user-select: none;
+    position: absolute;
+    height: 12vh;
+    width: 1vw;
+    background-color: rgb(0, 60, 255);
+    margin-left: 98vw;
+}
+

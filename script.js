@@ -15,6 +15,7 @@ let flag = true;
 let audioFlag = true;
 let ballX;
 let ballY;
+let isPDragOn = true;
 
 let p1score = 0
 let p2score = 0
@@ -32,6 +33,8 @@ let pastFlag = false;
 
 let isDragOn = true;
 let dynFlag = false;
+
+let isCleared = false;
 
 const overlay = () => {
     let margin = -12;
@@ -74,6 +77,7 @@ const playTheme = () => {
 }
 //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 const gameInit = async () => {
+    initializeDrag(0);
     document.getElementById("backgroundEffect").style.opacity = "0.75";
     document.getElementById("ball").style.zIndex = "69";
     document.getElementById("ballDrag1").style.zIndex = "68";
@@ -81,7 +85,13 @@ const gameInit = async () => {
     document.getElementById("ballDrag3").style.zIndex = "66";
     document.getElementById("ballDrag4").style.zIndex = "65";
     document.getElementById("player1").style.zIndex = "64";
+    document.getElementById("player1drag1").style.zIndex = "63";
+    document.getElementById("player1drag2").style.zIndex = "62";
+    document.getElementById("player1drag3").style.zIndex = "61";
     document.getElementById("player2").style.zIndex = "64";
+    document.getElementById("player2drag1").style.zIndex = "63";
+    document.getElementById("player2drag2").style.zIndex = "62";
+    document.getElementById("player2drag3").style.zIndex = "61";
     document.getElementById("victor").style.zIndex = "64";
     document.getElementById("subtext").style.zIndex = "64";
     document.getElementById("outerframe").style.zIndex = "74";
@@ -102,7 +112,9 @@ const gameInit = async () => {
         document.getElementById("p1c").style.display = "none";
         document.getElementById("p2c").style.display = "none";
         document.getElementById("pauseframe").style.display = "none";
+        initializeDrag(1);
         gameStart();
+        changeTheme(1);
     }, 3000)
 }
 
@@ -119,6 +131,8 @@ const rstBtn = () => {
 }
 
 const gameOver = (playerWon) => {
+    isCleared = false;
+    changeTheme(1);
     initializeDrag(0);
     if (playerWon != 3) {
         if (audioFlag) {
@@ -167,7 +181,14 @@ let dragThreeY = 36
 let dragThreeX = 48 
 let dragFourY = 36
 let dragFourX = 48
+let p1d1 = 40
+let p1d2 = 40
+let p1d3 = 40
+let p2d1 = 40
+let p2d2 = 40
+let p2d3 = 40
 const gameStart = () => {
+    changeTheme(1);
     let dragCounter = 0;
     if (isDragOn) {
         initializeDrag(1);
@@ -235,16 +256,37 @@ const gameStart = () => {
             if (isDragOn) {
                 if (dragCounter % 2 == 0) {
                     updateDrag(dragOneX, dragOneY, 1);
+                    if (isPDragOn) {
+                    updatePDrag(1, 1, p1d1);
+                    p1d1 = p1pos;
+                    updatePDrag(2, 1, p2d1);
+                    p2d1 = p2pos;
+                    } else if (!isCleared) {
+                        initializeDrag(0, 1);
+                        isCleared = true;
+                    }
                     dragOneX = ballXpos
                     dragOneY = ballYpos
                 }
                 if (dragCounter % 3 == 0) {
                     updateDrag(dragTwoX, dragTwoY, 2);
+                    if (isPDragOn) {
+                    updatePDrag(1, 2, p1d2);
+                    p1d2 = p1pos;
+                    updatePDrag(2, 2, p2d2);
+                    p2d2 = p2pos;
+                    }
                     dragTwoX = ballXpos
                     dragTwoY = ballYpos
                 }
                 if (dragCounter % 4 == 0) {
                     updateDrag(dragThreeX, dragThreeY, 3);
+                    if (isPDragOn) {
+                    updatePDrag(1, 3, p1d3);
+                    p1d3 = p1pos;
+                    updatePDrag(2, 3, p2d3);
+                    p2d3 = p2pos;
+                    }
                     dragThreeX = ballXpos
                     dragThreeY = ballYpos
                 }
@@ -402,19 +444,46 @@ const mouseoverDyn = () => {
     }, 500)
 }
 
-const initializeDrag = (state) => {
+const initializeDrag = (state, isExc) => {
     switch (state) {
         case 1:
+            if (isExc != 1) {
         document.getElementById("ballDrag1").style.display = "block";
         document.getElementById("ballDrag2").style.display = "block";
         document.getElementById("ballDrag3").style.display = "block";
         document.getElementById("ballDrag4").style.display = "block";
+        }
+        document.getElementById("player1drag1").style.display = "block";
+        document.getElementById("player1drag2").style.display = "block";
+        document.getElementById("player1drag3").style.display = "block";
+        document.getElementById("player2drag1").style.display = "block";
+        document.getElementById("player2drag2").style.display = "block";
+        document.getElementById("player2drag3").style.display = "block";
+        /*for (let i = 1; i <= 3; i++) {
+            for (let j = 1; j <= 3; j++) {
+                document.getElementById(`player${i}drag${j}`).style.display = "block";
+            }
+        }*/
         break;
         case 0:
+            if (isExc != 1) {
         document.getElementById("ballDrag1").style.display = "none";
         document.getElementById("ballDrag2").style.display = "none";
         document.getElementById("ballDrag3").style.display = "none";
         document.getElementById("ballDrag4").style.display = "none";
+            }
+        document.getElementById("player1drag1").style.display = "none";
+        document.getElementById("player1drag2").style.display = "none";
+        document.getElementById("player1drag3").style.display = "none";
+        document.getElementById("player2drag1").style.display = "none";
+        document.getElementById("player2drag2").style.display = "none";
+        document.getElementById("player2drag3").style.display = "none";
+        /*for (let i = 1; i <= 3; i++) {
+            for (let j = 1; j <= 3; j++) {
+                document.getElementById(`player${i}drag${j}`).style.display = "none";
+            }
+        }*/
+
         dragOneY = -999;
         dragOneX = -999;
         dragTwoY = -999;
@@ -462,14 +531,55 @@ const updateDrag = (xpos, ypos, dragNum) => {
     document.getElementById(`ballDrag${dragNum}`).style.top = `${ypos}vh`
 }
 
+const updatePDrag = (player, dragNum, ypos) => {
+    document.getElementById(`player${player}drag${dragNum}`).style.marginTop = `${ypos}vh`
+    /*switch (player) {
+        case 1:
+            switch(dragNum) {
+                case 1:
+                    document.getElementById("player1drag1").style.marginTop = `${ypos}vh`
+                    console.log("checked")
+                break;
+                case 2:
+                break;
+                case 3:
+                break;
+            }
+        break;
+        case 2:
+            switch(dragNum) {
+                case 1:
+                break;
+                case 2:
+                break;
+                case 3:
+                break;
+            }
+        break;
+    }*/
+}
+
 let theme = 1;
-const changeTheme = () => {
-    if (theme == 5) {
+const changeTheme = (flag) => {
+    if (flag != 1) {
+    if (theme == 6) {
         theme = 1;
     } else theme++
+    }
     switch (theme) {
         case 1: // CLASSIC
+        initializeDrag(1, 1);
+        isPDragOn = true;
         document.getElementById("themesButton").innerText = `CLASSIC`;
+
+
+        document.getElementById("player1drag1").style.backgroundColor = "rgb(0, 205, 252)";
+        document.getElementById("player1drag2").style.backgroundColor = "rgb(0, 169, 199)";
+        document.getElementById("player1drag3").style.backgroundColor = "rgb(0, 120, 219)";
+        document.getElementById("player2drag1").style.backgroundColor = "rgb(0, 205, 212)";
+        document.getElementById("player2drag2").style.backgroundColor = "rgb(0, 169, 199)";
+        document.getElementById("player2drag3").style.backgroundColor = "rgb(0, 120, 219)";
+
 
         document.getElementById("backgroundEffect").src = "resources/newvid.gif";
         document.getElementById("backgroundEffect").style.opacity = "0.75";
@@ -488,9 +598,9 @@ const changeTheme = () => {
         document.getElementById("victor").style.color = `rgb(255, 255, 255)`
         document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
         document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
-        document.getElementById("player1").style.outline = `0px solid green`
+        document.getElementById("player1").style.outline = `0.5vh solid black`
         document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
-        document.getElementById("player2").style.outline = `0px solid green`
+        document.getElementById("player2").style.outline = `0.5vh solid black`
 
         document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
             document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
@@ -508,6 +618,8 @@ const changeTheme = () => {
 
 
         case 2: // 1337
+        initializeDrag(0, 1);
+        isPDragOn = false;
         document.getElementById("themesButton").innerText = `1337`;
 
         document.getElementById("backgroundEffect").src = `resources/1337.png`;
@@ -546,10 +658,19 @@ const changeTheme = () => {
         break;
 
         case 3:
+            initializeDrag(1, 1);
+            isPDragOn = true;
             document.getElementById("themesButton").innerText = `MIDNIGHT`;
 
+        document.getElementById("player1drag1").style.backgroundColor = "rgb(143, 83, 226)";
+        document.getElementById("player1drag2").style.backgroundColor = "rgb(124, 72, 196)";
+        document.getElementById("player1drag3").style.backgroundColor = "rgb(66, 38, 104)";
+        document.getElementById("player2drag1").style.backgroundColor = "rgb(143, 83, 226)";
+        document.getElementById("player2drag2").style.backgroundColor = "rgb(124, 72, 196)";
+        document.getElementById("player2drag3").style.backgroundColor = "rgb(66, 38, 104)";
+
             document.getElementById("backgroundEffect").src = "resources/midnight.gif";
-            document.getElementById("backgroundEffect").style.opacity = "0.1";
+            document.getElementById("backgroundEffect").style.opacity = "0.3";
             document.getElementById("ball").style.backgroundColor = `rgb(255, 255, 255)`
             document.getElementById("ball").style.outline = `0px solid black`
     
@@ -565,9 +686,9 @@ const changeTheme = () => {
             document.getElementById("victor").style.color = `rgb(255, 255, 255)`
             document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
             document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
-            document.getElementById("player1").style.outline = `0px solid green`
+            document.getElementById("player1").style.outline = `1vh solid black`
             document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
-            document.getElementById("player2").style.outline = `0px solid green`
+            document.getElementById("player2").style.outline = `1vh solid black`
 
             document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
             document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
@@ -583,6 +704,8 @@ const changeTheme = () => {
     
             break;
         case 4:
+            initializeDrag(0, 1);
+            isPDragOn = false;
             document.getElementById("themesButton").innerText = `KEEP OUT`;
             document.getElementById("backgroundEffect").src = `resources/keepout.png`;
         document.getElementById("backgroundEffect").style.opacity = "0.6";
@@ -616,13 +739,22 @@ const changeTheme = () => {
         document.getElementById("tvover").style.opacity = "0.7";
         document.getElementById("overlay").style.opacity = `0.25`;
         break;
-        case 5:
+        case 6:
+            initializeDrag(1, 1);
+            isPDragOn = true;
             document.getElementById("themesButton").innerText = `NONE`;
 
         document.getElementById("backgroundEffect").src = "resources/none.png";
         document.getElementById("backgroundEffect").style.opacity = "0.75";
         document.getElementById("ball").style.backgroundColor = `rgb(255, 255, 255)`
         document.getElementById("ball").style.outline = `0px solid black`
+
+        document.getElementById("player1drag1").style.backgroundColor = "rgb(212, 198, 0)";
+        document.getElementById("player1drag2").style.backgroundColor = "rgb(199, 162, 0)";
+        document.getElementById("player1drag3").style.backgroundColor = "rgb(255, 0, 0)";
+        document.getElementById("player2drag1").style.backgroundColor = "rgb(212, 198, 0)";
+        document.getElementById("player2drag2").style.backgroundColor = "rgb(199, 162, 0)";
+        document.getElementById("player2drag3").style.backgroundColor = "rgb(255, 0, 0)";
 
         document.getElementById("ballDrag1").style.backgroundColor = `rgb(212, 198, 0)`
         document.getElementById("ballDrag1").style.boxShadow = `0px 0px 10px rgb(212, 198, 0)`
@@ -636,9 +768,9 @@ const changeTheme = () => {
         document.getElementById("victor").style.color = `rgb(255, 255, 255)`
         document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
         document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
-        document.getElementById("player1").style.outline = `0px solid green`
+        document.getElementById("player1").style.outline = `1vh solid black`
         document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
-        document.getElementById("player2").style.outline = `0px solid green`
+        document.getElementById("player2").style.outline = `1vh solid black`
 
         document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
             document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
@@ -651,6 +783,54 @@ const changeTheme = () => {
 
         document.getElementById("overlay").style.opacity = `0.25`;
         document.getElementById("tvover").style.opacity = "0.5";
+        break;
+
+        case 5:
+            initializeDrag(1, 1)
+            isPDragOn = true;
+            document.getElementById("themesButton").innerText = `BLUE v RED`;
+
+        document.getElementById("backgroundEffect").src = "resources/bluevred.png";
+        document.getElementById("backgroundEffect").style.opacity = "0.75";
+        document.getElementById("ball").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("ball").style.outline = `0px solid black`
+
+        document.getElementById("player1drag1").style.backgroundColor = "rgb(255, 0, 0)";
+        document.getElementById("player1drag2").style.backgroundColor = "rgb(255, 0, 0, 0.7)";
+        document.getElementById("player1drag3").style.backgroundColor = "rgb(255, 0, 0, 0.4)";
+        document.getElementById("player2drag1").style.backgroundColor = "rgb(0, 221, 255)";
+        document.getElementById("player2drag2").style.backgroundColor = "rgb(0, 221, 255, 0.7)";
+        document.getElementById("player2drag3").style.backgroundColor = "rgb(0, 81, 255, 0.4)";
+
+        document.getElementById("ballDrag1").style.backgroundColor = `rgb(0, 221, 255)`
+        document.getElementById("ballDrag1").style.boxShadow = `0px 0px 10px rgb(0, 221, 255)`
+        document.getElementById("ballDrag2").style.backgroundColor = `rgb(255, 0, 0)`
+        document.getElementById("ballDrag2").style.boxShadow = `0px 0px 10px rgb(255, 0, 0)`
+        document.getElementById("ballDrag3").style.backgroundColor = `rgb(0, 221, 255)`
+        document.getElementById("ballDrag3").style.boxShadow = `0px 0px 10px rgb(0, 221, 255)`
+        document.getElementById("ballDrag4").style.backgroundColor = `rgb(255, 0, 0)`
+        document.getElementById("ballDrag4").style.boxShadow = `0px 0px 10px rgb(255, 0, 0)`
+
+        document.getElementById("victor").style.color = `rgb(255, 255, 255)`
+        document.getElementById("subtext").style.color = `rgb(255, 255, 255)`
+        document.getElementById("player1").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("player1").style.outline = `1vh solid black`
+        document.getElementById("player2").style.backgroundColor = `rgb(255, 255, 255)`
+        document.getElementById("player2").style.outline = `1vh solid black`
+
+        document.getElementById("victor").style.backgroundColor = `rgb(0, 0, 0, 0)`
+            document.getElementById("subtext").style.backgroundColor = `rgb(0, 0, 0, 0)`
+
+        document.getElementById("p1score").style.color = "rgb(255, 255, 255)";
+        document.getElementById("p2score").style.color = "rgb(255, 255, 255)";
+
+        document.getElementById("outerframe").style.zIndex = "74";
+        document.getElementById("optionsCard").style.zIndex = "75";
+
+        document.getElementById("overlay").style.opacity = `0.25`;
+        document.getElementById("tvover").style.opacity = "0.5";
+        break;
+
     }
 
 }
