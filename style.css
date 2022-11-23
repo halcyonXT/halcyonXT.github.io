@@ -99,6 +99,10 @@ body {
     width: 0.75vw;
 }
 
+#backgroundEffect {
+    transition-duration: 0.1s;
+}
+
 #scoreframe1 {
     user-select: none;
     background-color:rgb(255, 255, 255, 0);
@@ -439,6 +443,7 @@ body {
     pointer-events: none;
     user-select: none;
     opacity: 0.25;
+    mix-blend-mode: overlay;
 }
 
 #menuImg {
@@ -544,13 +549,14 @@ body {
     margin: 0;
     padding: 0;
     margin-left: -1vh;
-    margin-top: -1vh;
+    margin-top: -20vh;
     z-index: 101;
-    height: 100vh;
+    height: 118.5vh;
     width:100%;
     pointer-events: none;
     user-select: none;
-    opacity: 0.5;
+    opacity: 0;
+    mix-blend-mode: overlay;
 }
 
 #player1drag1 {
